@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920px" height="1080px" viewBox="0 0 1920 1080" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>R3_Wallpaper_Light-01moregrey1</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="100%" y1="100%" x2="0%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#EAEDF0" offset="0%"></stop>
+            <stop stop-color="#E8ECF1" offset="60.7794436%"></stop>
+            <stop stop-color="#E4E7EA" offset="100%"></stop>
+        </linearGradient>
+        <radialGradient cx="50%" cy="53.0647274%" fx="50%" fy="53.0647274%" r="48.8829282%" id="radialGradient-2">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#F1F5FB" stop-opacity="0" offset="100%"></stop>
+        </radialGradient>
+        <linearGradient x1="50%" y1="135.523165%" x2="26.2994124%" y2="34.3868371%" id="linearGradient-3">
+            <stop stop-color="#F9547F" offset="0%"></stop>
+            <stop stop-color="#8761F5" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="19.2373057%" y1="24.4035621%" x2="97.6923772%" y2="96.0178843%" id="linearGradient-4">
+            <stop stop-color="#4FC9FF" offset="0%"></stop>
+            <stop stop-color="#00B6FF" offset="100%"></stop>
+        </linearGradient>
+        <radialGradient cx="8.90336654%" cy="0.435539685%" fx="8.90336654%" fy="0.435539685%" r="112.57245%" id="radialGradient-5">
+            <stop stop-color="#FFFEFA" offset="0%"></stop>
+            <stop stop-color="#FFFEFB" offset="100%"></stop>
+        </radialGradient>
+        <radialGradient cx="40.1707806%" cy="41.820458%" fx="40.1707806%" fy="41.820458%" r="50.5681736%" id="radialGradient-6">
+            <stop stop-color="#F1F5F9" offset="0%"></stop>
+            <stop stop-color="#F0F4F8" offset="100%"></stop>
+            <stop stop-color="#EBEEF4" offset="100%"></stop>
+        </radialGradient>
+        <linearGradient x1="104.23206%" y1="-23.457511%" x2="38.3481001%" y2="29.5591944%" id="linearGradient-7">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#EBEEF4" offset="100%"></stop>
+        </linearGradient>
+        <radialGradient cx="50%" cy="55.6205601%" fx="50%" fy="55.6205601%" r="41.4856591%" id="radialGradient-8">
+            <stop stop-color="#EBEEF4" offset="0%"></stop>
+            <stop stop-color="#F1F5F9" offset="100%"></stop>
+        </radialGradient>
+    </defs>
+    <g id="R3_Wallpaper_Light-01moregrey1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle-2" fill="url(#linearGradient-1)" fill-rule="nonzero" x="0" y="0" width="1920" height="1080"></rect>
+        <circle id="Oval-3-Copy-4" fill="url(#radialGradient-2)" fill-rule="nonzero" opacity="0.336328125" cx="0" cy="856" r="856"></circle>
+        <path d="M1392.5,801.238739 C1295.99469,801.238739 1217.76126,723.005309 1217.76126,626.5 C1217.76126,529.994691 1295.99469,451.761261 1392.5,451.761261 C1489.00531,451.761261 1567.23874,529.994691 1567.23874,626.5 C1567.23874,723.005309 1489.00531,801.238739 1392.5,801.238739 M1392.5,440 C1289.49871,440 1206,523.498714 1206,626.5 C1206,729.501286 1289.49871,813 1392.5,813 C1495.50129,813 1579,729.501286 1579,626.5 C1579,523.498714 1495.50129,440 1392.5,440" id="Fill-1" fill="url(#linearGradient-3)" opacity="0.584207589"></path>
+        <path d="M479,1002 C403.337171,1002 342,940.662829 342,865 C342,789.337171 403.337171,728 479,728 C554.662829,728 616,789.337171 616,865 C616,940.662829 554.662829,1002 479,1002 M479,719 C398.366286,719 333,784.366286 333,865 C333,945.633714 398.366286,1011 479,1011 C559.633714,1011 625,945.633714 625,865 C625,784.366286 559.633714,719 479,719" id="Fill-1-Copy" fill="url(#linearGradient-4)" opacity="0.584095982"></path>
+        <path d="M659,767.421053 C654.349192,767.421053 650.578947,763.650808 650.578947,759 C650.578947,754.349192 654.349192,750.578947 659,750.578947 C663.650808,750.578947 667.421053,754.349192 667.421053,759 C667.421053,763.650808 663.650808,767.421053 659,767.421053 M643,759 C643,767.836571 650.163429,775 659,775 C667.836571,775 675,767.836571 675,759 C675,750.163429 667.836571,743 659,743 C650.163429,743 643,750.163429 643,759 Z" id="Fill-1-Copy-6" fill="url(#radialGradient-5)" opacity="0.666015625" transform="translate(659.000000, 759.000000) rotate(-180.000000) translate(-659.000000, -759.000000) "></path>
+        <path d="M1113,605 C1107.47717,605 1103,600.522834 1103,595 C1103,589.477166 1107.47717,585 1113,585 C1118.52283,585 1123,589.477166 1123,595 C1123,600.522834 1118.52283,605 1113,605 M1094,595 C1094,605.493429 1102.50657,614 1113,614 C1123.49343,614 1132,605.493429 1132,595 C1132,584.506571 1123.49343,576 1113,576 C1102.50657,576 1094,584.506571 1094,595 Z" id="Fill-1-Copy-6" fill="url(#radialGradient-5)" opacity="0.666015625" transform="translate(1113.000000, 595.000000) rotate(-180.000000) translate(-1113.000000, -595.000000) "></path>
+        <path d="M941,980.105263 C934.314464,980.105263 928.894737,974.685536 928.894737,968 C928.894737,961.314464 934.314464,955.894737 941,955.894737 C947.685536,955.894737 953.105263,961.314464 953.105263,968 C953.105263,974.685536 947.685536,980.105263 941,980.105263 M918,968 C918,980.702571 928.297429,991 941,991 C953.702571,991 964,980.702571 964,968 C964,955.297429 953.702571,945 941,945 C928.297429,945 918,955.297429 918,968 Z" id="Fill-1-Copy-6" fill="url(#radialGradient-5)" opacity="0.503404018" transform="translate(941.000000, 968.000000) rotate(-180.000000) translate(-941.000000, -968.000000) "></path>
+        <circle id="Oval-Copy" fill="url(#radialGradient-6)" fill-rule="nonzero" cx="1783" cy="1019" r="568"></circle>
+        <circle id="Oval-Copy-2" fill="url(#linearGradient-7)" fill-rule="nonzero" cx="137" cy="1317" r="568"></circle>
+        <circle id="Oval" fill="url(#radialGradient-8)" fill-rule="nonzero" cx="682" cy="-339" r="937"></circle>
+    </g>
+</svg>

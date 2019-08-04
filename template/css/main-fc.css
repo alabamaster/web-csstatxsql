@@ -2,6 +2,8 @@ body {
 	color: #252536;
 	background-color: #F2F2F3;
 	font-family: 'Roboto', sans-serif;
+	background-image: url('../bg-light.svg');
+    background-size: cover;
 }
 
 /* containers */
