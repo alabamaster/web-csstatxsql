@@ -46,21 +46,6 @@ $kdratio = round($row['kills'] / ($row['deaths'] +1), 2);
 		<link rel="stylesheet" href="<?=$main['url']?>template/css/main-fc.css">
 		<link rel="stylesheet" href="<?=$main['url']?>template/css/flag-icon.css">
 
-		<style type="text/css">
-			.circle_maps {
-				border-radius: 50%/50%;
-				width: 75px;
-				height: 75px;
-				margin-top: 20px;
-			}
-			.circle_weapons {
-				border-radius: 50%/50%;
-				width: 75px;
-				height: 75px;
-				margin-top: 20px;
-			}
-		</style>
-
 		<title><?=$row['name']?></title>
 	</head>
 	<body>
@@ -251,7 +236,6 @@ if ( $steam1 == $steam2 )
 
 								if ( $w_count > 0 ) {
 									$weapons = $weapons->FetchAll(PDO::FETCH_ASSOC);
-									//while ( $r = $weapons->fetch(PDO::FETCH_ASSOC) ) {
 									foreach ($weapons as $r) {
 										echo '<div class="media">';
 										echo '<img src="w_img/'.$r['weapon'].'.png" title="'.$r['weapon'].'" class="circle_weapons mr-3">';
@@ -281,7 +265,6 @@ if ( $steam1 == $steam2 )
 								$m_count = $maps->rowCount();
 								
 								if ( $m_count > 0 ) {
-									//while ( $r = $maps->fetch(PDO::FETCH_ASSOC) ) {
 									$maps = $maps->FetchAll(PDO::FETCH_ASSOC);
 									foreach ($maps as $r) {
 										// map images

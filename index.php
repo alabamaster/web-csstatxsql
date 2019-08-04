@@ -1,10 +1,11 @@
 <?php 
+
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
-require 'inc/config.php';
-require 'inc/func.php';
+require_once 'inc/config.php';
+require_once 'inc/func.php';
 
 $Time = new TimePlayers();
 
@@ -58,17 +59,9 @@ function str($link='?',$k_page=1,$page=1){ // Вывод номеров стра
 		<!-- Main CSS -->
 		<link rel="stylesheet" href="<?=$main['url']?>template/css/main-fc.css">
 		<link rel="stylesheet" href="<?=$main['url']?>template/css/flag-icon.css">
-		<style type="text/css">
-			.titleBlock {
-				/* цвета бэкграунда добавлять отдельно */
-				border-radius: 2px;
-				padding: 3px;
-				text-align: center;
-				color: #fff;
-			}
-		</style>
 
-		<title>Статистика</title>
+		<title>Статистика игроков</title>
+		<!-- <meta name="description" content="">-->
 	</head>
 	<body>
 		<div class="container">

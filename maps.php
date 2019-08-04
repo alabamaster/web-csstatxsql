@@ -23,28 +23,9 @@ $Time = new TimePlayers();
 		<!-- Main CSS -->
 		<link rel="stylesheet" href="<?=$main['url']?>template/css/main-fc.css">
 		<link rel="stylesheet" href="<?=$main['url']?>template/css/flag-icon.css">
-		<style type="text/css">
-			.titleBlock {
-				/* цвета бэкграунда добавлять отдельно */
-				border-radius: 2px;
-				padding: 3px;
-				text-align: center;
-				color: #fff;
-			}
-			.mapimage {
-				width: 70px;
-				height: 50px;
-				border-radius: 4px;
-				margin-right: 15px;
-			}
-			.txt1 {
-				position: absolute;
-				margin-top: 13px;
-				margin-right: 15px;
-			}
-		</style>
 
 		<title>Статистика карт</title>
+		<!-- <meta name="description" content="">-->
 	</head>
 	<body>
 		<div class="container">
@@ -65,7 +46,6 @@ $Time = new TimePlayers();
 				<div class="col">
 					<div class="block">
 						<?php 
-							//$maps = $pdo->query("SELECT player_id, map, SUM(kills) AS kills, SUM(deaths) AS deaths, SUM(dmg) AS dmg, SUM(connection_time) AS connection_time FROM csstats_maps GROUP BY map ORDER BY kills DESC");
 							$maps = DB::run('SELECT `player_id`, `map`, SUM(kills) AS `kills`, SUM(deaths) AS `deaths`, SUM(dmg) AS dmg, SUM(connection_time) AS `connection_time` FROM `csstats_maps` GROUP BY `map` ORDER BY `kills` DESC');
 						?>
 						<table class="table">
@@ -81,10 +61,8 @@ $Time = new TimePlayers();
 							<tbody>
 						<?php
 							$id = 1;
-							//while ( $r = $maps->fetch(PDO::FETCH_ASSOC) ) {
 							$maps = $maps->FetchAll(PDO::FETCH_ASSOC);
 							foreach ($maps as $r) {
-								//$asd = qry('SELECT * FROM csstats_maps t1 JOIN csstats t2 WHERE t1.map = ? AND t1.player_id = t2.id GROUP BY name ORDER BY (t1.kills - t1.deaths) LIMIT 10', array( $r['map'] ));
 								$asd = DB::run('SELECT * FROM `csstats_maps` `t1` JOIN `csstats` `t2` WHERE `t1`.`map` = ? AND `t1`.`player_id` = `t2`.`id` GROUP BY `name` ORDER BY (`t1`.`kills` - `t1`.`deaths`) LIMIT 10', [ $r['map'] ]);
 
 								// map images
@@ -130,7 +108,6 @@ $Time = new TimePlayers();
 													<div class="col">
 														<?php 
 															$row_id = 1;
-															//while ( $row_asd = $asd->fetch(PDO::FETCH_ASSOC) ) {
 															$asd = $asd->FetchAll(PDO::FETCH_ASSOC);
 															foreach ($asd as $row_asd) {
 	echo '<p style="border-bottom: 1px dashed #ccc;">#'.$row_id.' <a href="'.$main['url'].'user.php?id='.$row_asd['id'].'">'.$row_asd['name'].'</a> заработал <b style="color:#00b707">'.$row_asd['kills'].'</b> фрагов, умер <b style="color:#ff5e5e">'.$row_asd['deaths'].'</b> раз, играл на карте <b style="color:#3899ff">'.$Time->TimeOn($row_asd['connection_time']).'</b></p><br>';
