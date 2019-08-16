@@ -36,6 +36,18 @@ function str($link='?',$k_page=1,$page=1){ // Вывод номеров стра
 	if ($page!=$k_page) echo '<li class="page-item"><a class="page-link" href="'.$link.'page=end" title="Последняя страница">&gt;&gt;</a></li>';
 	echo '</ul>';
 }
+
+// geoip
+if ( $main['phpGeoip'] == 1 ) {
+	$country_code = mb_strtolower(geoip_country_code_by_name($row['ip']));
+	$country_name = geoip_country_name_by_name($row['ip']);
+} else {
+	$json = file_get_contents('http://ip-api.com/json/'.$row['ip'].'?lang=ru');
+	$array = json_decode($json, true);
+
+	$country_code = mb_strtolower($array['countryCode']);
+	$country_name = mb_strtolower($array['country']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -198,7 +210,7 @@ function str($link='?',$k_page=1,$page=1){ // Вывод номеров стра
 								if ( $count > 0 ) {
 									foreach ($q2 as $row) {
 echo '<tr>';
-echo '<td style="width: 60px;"><span class="flag-icon flag-icon-'.mb_strtolower(geoip_country_code_by_name($row['ip'])).'" data-toggle="tooltip" data-placement="top" title="'.geoip_country_name_by_name($row['ip']).'"></span></td>';
+echo '<td style="width: 60px;"><span class="flag-icon flag-icon-'.$country_code.'" data-toggle="tooltip" data-placement="top" title="'.$country_name.'"></span></td>';
 echo '<td><a href="'.$main['url'].'user.php?id='.$row['id'].'">'.$row['name'].'</a></td>';
 echo '<td>'.number_format($row['kills']).'</td>';
 echo '<td>'.number_format($row['deaths']).'</td>';

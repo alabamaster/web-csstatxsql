@@ -6,7 +6,8 @@ $main = array(
 	'url' 		=> 'https://csonelove.ru/test2/csstats/', // слэш в конце важен!
 	'userIcons'	=> 1, // показывать иконки, настройка $user_access_cfg, 0 - нет / 1 - да (таблица статистики должна быть в БД csbans)
 	'name'		=> 'Counter-Strike',
-	'userIconBan' => 1 // статус бана для статистики (таблица статистики должна быть в БД csbans)
+	'userIconBan' => 1, // статус бана для статистики (таблица статистики должна быть в БД csbans)
+	'phpGeoip' => 1 // 1 - use geoip php, 0 - api http://ip-api.com
 );
 
 $stats_weapons = 1; // блок статистики по оружию
