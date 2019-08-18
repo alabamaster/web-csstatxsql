@@ -186,29 +186,30 @@ if ( $main['phpGeoip'] == 1 ) {
 			</div>
 			<div class="row" id="2">
 				<div class="col block">
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th style="width: 60px;"><i class="fa fa-flag"></i></th>
-								<th><!--<i class="fa fa-user-o"></i>--> Ник</th>
-								<th><!--<i class="fa fa-universal-access"></i>--> Фрагов</th>
-								<th><!--<i class="fa fa-user-times"></i>--> Смертей</th>
-								<th><!--<i class="fa fa-clock-o"></i>--> Время в игре</th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php
-								$count = DB::run('SELECT * FROM `csstats` WHERE `kills` > 0')->rowCount();
-								//$count = $count->rowCount();
+					<div class="table-responsive-md">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th style="width: 60px;"><i class="fa fa-flag"></i></th>
+									<th><!--<i class="fa fa-user-o"></i>--> Ник</th>
+									<th><!--<i class="fa fa-universal-access"></i>--> Фрагов</th>
+									<th><!--<i class="fa fa-user-times"></i>--> Смертей</th>
+									<th><!--<i class="fa fa-clock-o"></i>--> Время в игре</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php
+									$count = DB::run('SELECT * FROM `csstats` WHERE `kills` > 0')->rowCount();
+									//$count = $count->rowCount();
 
-								$k_page = k_page($count,15);
-								$page = page($k_page);
-								$start = 15*$page-15;
+									$k_page = k_page($count,15);
+									$page = page($k_page);
+									$start = 15*$page-15;
 
-								$q2 = DB::run("SELECT * FROM `csstats` WHERE `kills` > 0 ORDER BY (`kills`-`deaths`) DESC LIMIT $start, 15")->FetchAll(PDO::FETCH_ASSOC);
+									$q2 = DB::run("SELECT * FROM `csstats` WHERE `kills` > 0 ORDER BY (`kills`-`deaths`) DESC LIMIT $start, 15")->FetchAll(PDO::FETCH_ASSOC);
 
-								if ( $count > 0 ) {
-									foreach ($q2 as $row) {
+									if ( $count > 0 ) {
+										foreach ($q2 as $row) {
 echo '<tr>';
 echo '<td style="width: 60px;"><span class="flag-icon flag-icon-'.$country_code.'" data-toggle="tooltip" data-placement="top" title="'.$country_name.'"></span></td>';
 echo '<td><a href="'.$main['url'].'user.php?id='.$row['id'].'">'.$row['name'].'</a></td>';
@@ -216,19 +217,20 @@ echo '<td>'.number_format($row['kills']).'</td>';
 echo '<td>'.number_format($row['deaths']).'</td>';
 echo '<td>'.$Time->TimeOn($row['connection_time']).'</td';										
 echo '</tr>';
+										}
+									} else {
+									    echo '<div class="red_alert">Статистика пуста</div>';
 									}
-								} else {
-								    echo '<div class="red_alert">Статистика пуста</div>';
-								}
-							?>
-						</tbody>
-					</table>
-					<?php 
-					if ( $count > 0 ) {
-						$p_url = $main['url'] . '?';
-						echo str($p_url, $k_page, $page);
-					}
-					?>
+								?>
+							</tbody>
+						</table>
+						<?php 
+						if ( $count > 0 ) {
+							$p_url = $main['url'] . '?';
+							echo str($p_url, $k_page, $page);
+						}
+						?>
+					</div>
 				</div>
 			</div>
 		</div>
