@@ -137,7 +137,7 @@ function str($link='?',$k_page=1,$page=1){ // Вывод номеров стра
 						</tbody>
 					</table>
 				</div>
-				<div class="col block" style="padding: 10px;">
+				<div class="col block table-responsive-md" style="padding: 10px;">
 					<div class="titleBlock" style="background-color: #4d8cff;">Топ по скилу</div>
 					<table class="table table-sm" style="margin-bottom: 0;">
 						<thead>

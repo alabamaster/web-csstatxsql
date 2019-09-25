@@ -85,7 +85,7 @@ function str($link='?',$k_page=1,$page=1){ // Вывод номеров стра
 			</div>
 			<div id="searchResult"></div>
 			<div class="row py-sm-2" id="1">
-				<div class="col block" style="padding: 10px;">
+				<div class="col block table-responsive-md" style="padding: 10px;">
 					<div class="text-center">Топ по килам</div>
 					<table class="table table-sm table-hover" style="margin-bottom: 0;">
 						<thead>
@@ -114,7 +114,7 @@ function str($link='?',$k_page=1,$page=1){ // Вывод номеров стра
 						</tbody>
 					</table>
 				</div>
-				<div class="col block mr-md-2 ml-md-2" style="padding: 10px;">
+				<div class="col block mr-md-2 ml-md-2 table-responsive-md" style="padding: 10px;">
 					<div class="text-center">Топ по урону</div>
 					<table class="table table-sm table-hover" style="margin-bottom: 0;">
 						<thead>
@@ -143,7 +143,7 @@ function str($link='?',$k_page=1,$page=1){ // Вывод номеров стра
 						</tbody>
 					</table>
 				</div>
-				<div class="col block" style="padding: 10px;">
+				<div class="col block table-responsive-md" style="padding: 10px;">
 					<div class="text-center">Топ по скилу</div>
 					<table class="table table-sm table-hover" style="margin-bottom: 0;">
 						<thead>
@@ -174,7 +174,7 @@ function str($link='?',$k_page=1,$page=1){ // Вывод номеров стра
 				</div>
 			</div>
 			<div class="row" id="2">
-				<div class="col block">
+				<div class="col block table-responsive-md">
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -196,10 +196,23 @@ function str($link='?',$k_page=1,$page=1){ // Вывод номеров стра
 
 								$q2 = DB::run("SELECT * FROM `csstats` WHERE `kills` > 0 ORDER BY (`kills`-`deaths`) DESC LIMIT $start, 15")->FetchAll(PDO::FETCH_ASSOC);
 
-								if ( $count > 0 ) {
-									foreach ($q2 as $row) {
+								if ( $count > 0 ) 
+								{
+									foreach ($q2 as $row) 
+									{
+										// geoip
+										if ( $main['phpGeoip'] == 1 ) {
+											$country_code = mb_strtolower(geoip_country_code_by_name($row['ip']));
+											$country_name = geoip_country_name_by_name($row['ip']);
+										} else {
+											$json = file_get_contents('http://ip-api.com/json/'.$row['ip'].'?lang=us');
+											$array = json_decode($json, true);
+
+											$country_code = mb_strtolower($array['countryCode']);
+											$country_name = mb_strtolower($array['country']);
+										}
 echo '<tr>';
-echo '<td style="width: 60px;"><span class="flag-icon flag-icon-'.mb_strtolower(geoip_country_code_by_name($row['ip'])).'" data-toggle="tooltip" data-placement="top" title="'.geoip_country_name_by_name($row['ip']).'"></span></td>';
+echo '<td style="width: 60px;"><span class="flag-icon flag-icon-'.$country_code.'" data-toggle="tooltip" data-placement="top" title="'.$country_name.'"></span></td>';
 echo '<td><a href="'.$main['url'].'user.php?id='.$row['id'].'">'.$row['name'].'</a></td>';
 echo '<td>'.number_format($row['kills']).'</td>';
 echo '<td>'.number_format($row['deaths']).'</td>';

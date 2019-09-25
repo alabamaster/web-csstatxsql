@@ -44,7 +44,7 @@ $Time = new TimePlayers();
 			</div>
 			<div class="row py-sm-2">
 				<div class="col">
-					<div class="block">
+					<div class="block table-responsive-md">
 						<?php 
 							$maps = DB::run('SELECT `player_id`, `map`, SUM(kills) AS `kills`, SUM(deaths) AS `deaths`, SUM(dmg) AS dmg, SUM(connection_time) AS `connection_time` FROM `csstats_maps` GROUP BY `map` ORDER BY `kills` DESC');
 						?>
