@@ -60,6 +60,18 @@ function str($link='?',$k_page=1,$page=1){ // Вывод номеров стра
 		<link rel="stylesheet" href="<?=$main['url']?>template/css/main-cs.css">
 		<link rel="stylesheet" href="<?=$main['url']?>template/css/flag-icon.css">
 
+		<style type="text/css">
+			.page-link {
+				border: 1px solid #889180;
+			}
+			.page-item.active .page-link {
+				border-color: #889180;
+			}
+			.page-item.active .page-link {
+				border: 1px solid #889180 !important;
+			}
+		</style>
+
 		<title>Статистика игроков</title>
 		<!-- <meta name="description" content="">-->
 		<audio id="link-cs2" preload="auto"><source src="<?=$main['url']?>template/audio/buttonrollover.wav" type="audio/wav"></audio>
