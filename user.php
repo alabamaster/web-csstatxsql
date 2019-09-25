@@ -25,7 +25,7 @@ if ( $main['phpGeoip'] == 1 ) {
 	$country_code = mb_strtolower(geoip_country_code_by_name($row['ip']));
 	$country_name = geoip_country_name_by_name($row['ip']);
 } else {
-	$json = file_get_contents('http://ip-api.com/json/'.$row['ip'].'?lang=ru');
+	$json = file_get_contents('http://ip-api.com/json/'.$row['ip'].'?lang=us');
 	$array = json_decode($json, true);
 
 	$country_code = mb_strtolower($array['countryCode']);

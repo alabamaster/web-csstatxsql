@@ -1,9 +1,4 @@
 <?php 
-
-ini_set('error_reporting', E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-
 require_once 'inc/config.php';
 require_once 'inc/func.php';
 
@@ -35,18 +30,6 @@ function str($link='?',$k_page=1,$page=1){ // Вывод номеров стра
 	if ($page != $k_page) echo '<li class="page-item"><a class="page-link" href="'.$link.'page=end" title="Страница №'.$k_page.'">'.$k_page.'</a></li>';elseif ($k_page>1)echo '<li class="page-item active"><a class="page-link" href="#">'.$k_page.'</a></li>';
 	if ($page!=$k_page) echo '<li class="page-item"><a class="page-link" href="'.$link.'page=end" title="Последняя страница">&gt;&gt;</a></li>';
 	echo '</ul>';
-}
-
-// geoip
-if ( $main['phpGeoip'] == 1 ) {
-	$country_code = mb_strtolower(geoip_country_code_by_name($row['ip']));
-	$country_name = geoip_country_name_by_name($row['ip']);
-} else {
-	$json = file_get_contents('http://ip-api.com/json/'.$row['ip'].'?lang=ru');
-	$array = json_decode($json, true);
-
-	$country_code = mb_strtolower($array['countryCode']);
-	$country_name = mb_strtolower($array['country']);
 }
 ?>
 <!DOCTYPE html>
@@ -208,8 +191,21 @@ if ( $main['phpGeoip'] == 1 ) {
 
 									$q2 = DB::run("SELECT * FROM `csstats` WHERE `kills` > 0 ORDER BY (`kills`-`deaths`) DESC LIMIT $start, 15")->FetchAll(PDO::FETCH_ASSOC);
 
-									if ( $count > 0 ) {
-										foreach ($q2 as $row) {
+									if ( $count > 0 ) 
+									{
+										foreach ($q2 as $row) 
+										{
+											// geoip
+											if ( $main['phpGeoip'] == 1 ) {
+												$country_code = mb_strtolower(geoip_country_code_by_name($row['ip']));
+												$country_name = geoip_country_name_by_name($row['ip']);
+											} else {
+												$json = file_get_contents('http://ip-api.com/json/'.$row['ip'].'?lang=us');
+												$array = json_decode($json, true);
+
+												$country_code = mb_strtolower($array['countryCode']);
+												$country_name = mb_strtolower($array['country']);
+											}
 echo '<tr>';
 echo '<td style="width: 60px;"><span class="flag-icon flag-icon-'.$country_code.'" data-toggle="tooltip" data-placement="top" title="'.$country_name.'"></span></td>';
 echo '<td><a href="'.$main['url'].'user.php?id='.$row['id'].'">'.$row['name'].'</a></td>';
