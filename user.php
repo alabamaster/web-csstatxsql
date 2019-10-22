@@ -1,36 +1,30 @@
 <?php 
-ini_set('error_reporting', E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-
 require_once 'inc/config.php';
 require_once 'inc/func.php';
 require_once 'inc/SteamUserFunctions.php';
 
 $Time = new TimePlayers();
 
-$id = $_GET['id'];
+$id = (int)htmlspecialchars($_GET['id']);
 
 if ( $id != true ) {
 	$url = $main['url'];
 	header("Location: $url");
 }
 
-$row = DB::run('SELECT * FROM `csstats` WHERE `id` = ?', [$id])->fetch(PDO::FETCH_ASSOC);
+$sql = DB::run('SELECT * FROM `csstats` WHERE `id` = ?', [$id]);
+
+if ( $sql->rowCount() == 0 ) {
+	$url = $main['url'];
+	header("Location: $url");
+}
+
+$row = $sql->fetch(PDO::FETCH_ASSOC);
 
 $kdratio = round($row['kills'] / ($row['deaths'] +1), 2);
 
-// geoip
-if ( $main['phpGeoip'] == 1 ) {
-	$country_code = mb_strtolower(geoip_country_code_by_name($row['ip']));
-	$country_name = geoip_country_name_by_name($row['ip']);
-} else {
-	$json = file_get_contents('http://ip-api.com/json/'.$row['ip'].'?lang=us');
-	$array = json_decode($json, true);
-
-	$country_code = mb_strtolower($array['countryCode']);
-	$country_name = mb_strtolower($array['country']);
-}
+//$stats_weapons = 1;
+//$stats_maps = 1;
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -223,10 +217,10 @@ if ( $steam1 == $steam2 )
 							<div class="input-group mb-3" data-toggle="tooltip" data-placement="left" title="Страна">
 								<div class="input-group-prepend">
 								<span class="input-group-text" id="basic-addon1" style="width: 50px;justify-content: center;">
-									<span class="flag-icon flag-icon-<?=$country_code;?>"></span>
+									<span class="flag-icon flag-icon-<?=mb_strtolower(geoip_country_code_by_name($row['ip']))?>"></span>
 								</span>
 								</div>
-								<input type="text" class="form-control" value="<?=$country_name;?>" aria-describedby="basic-addon1" disabled>
+								<input type="text" class="form-control" value="<?=geoip_country_name_by_name($row['ip'])?>" aria-describedby="basic-addon1" disabled>
 							</div>
 						</div>
 					</div>
