@@ -4,11 +4,10 @@ require 'func.php';
 
 $Time = new TimePlayers();
 
-$inputSearch = $_POST['search'];
-htmlspecialchars($inputSearch);
+$inputSearch = htmlentities($_POST['search'], ENT_QUOTES | ENT_IGNORE, "UTF-8");
 
-$q = DB::run('SELECT * FROM `csstats` WHERE `steamid` = ? OR `name` = ? OR `ip` = ?', [ $inputSearch, $inputSearch, $inputSearch ]);
-$count = $q->rowCount();
+$sql = DB::run('SELECT * FROM `csstats` WHERE `steamid` = ? OR `name` = ? OR `ip` = ? AND `dmg` > 0', [ $inputSearch, $inputSearch, $inputSearch ]);
+$count = $sql->rowCount();
 ?>
 
 <div class="row mt-md-1">
@@ -28,10 +27,20 @@ $count = $q->rowCount();
 			<tbody>
 				<?php 
 				if ( $count > 0 ) {
-					$q = $q->fetchAll(PDO::FETCH_ASSOC);
-					foreach ($q as $row) {
+					foreach ($sql->fetchAll() as $row) {
+						// geoip
+						if ( $main['phpGeoip'] == 1 ) {
+							$country_code = mb_strtolower(geoip_country_code_by_name($row['ip']));
+							$country_name = geoip_country_name_by_name($row['ip']);
+						} else {
+							$json = file_get_contents('http://ip-api.com/json/'.$row['ip'].'?lang=us');
+							$array = json_decode($json, true);
+							$country_code = mb_strtolower($array['countryCode']);
+							$country_name = mb_strtolower($array['country']);
+						}
+
 						echo '<tr>';
-						echo '<td style="width: 60px;"><span class="flag-icon flag-icon-'.mb_strtolower(geoip_country_code_by_name($row['ip'])).'" data-toggle="tooltip" data-placement="top" title="'.geoip_country_name_by_name($row['ip']).'"></span>
+						echo '<td style="width: 60px;"><span class="flag-icon flag-icon-'.$country_code.'" data-toggle="tooltip" data-placement="top" title="'.$country_name.'"></span>
 						</td>';
 						echo '<td><a href="'.$main['url'].'user.php?id='.$row['id'].'">'.$row['name'].'</a></td>';
 						echo '<td>'.$row['steamid'].'</td>';

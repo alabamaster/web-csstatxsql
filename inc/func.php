@@ -1,12 +1,7 @@
 <?php
+require_once 'config.php';
 
-require 'config.php';
-
-define('DB_HOST', '127.0.0.1'); // database host
-define('DB_NAME', ''); // database name
-define('DB_USER', ''); // database user
-define('DB_PASS', ''); // database password
-define('DB_CHAR', 'utf8'); // database charset
+header("X-XSS-Protection: 1; mode=block");
 
 $time = time();
 
@@ -153,4 +148,32 @@ class TimePlayers
         $cases = array (2, 0, 1, 1, 1, 2);
         return $titles[ ($number%100>4 && $number%100<20)? 2 : $cases[min($number%10, 5)] ];
     }
+}
+
+// bklv?
+function page($k_page=1){ // Выдает текущую страницу
+    $page=1;
+    if (isset($_GET['page'])){
+    if ($_GET['page']=='end')$page=intval($k_page);elseif(is_numeric($_GET['page'])) $page=intval($_GET['page']);}
+    if ($page<1)$page=1;
+    if ($page>$k_page)$page=$k_page;
+    return $page;
+}
+function k_page($k_post=0,$k_p_str=10){ // Высчитывает количество страниц
+    if ($k_post!=0) {$v_pages=ceil($k_post/$k_p_str);return $v_pages;}
+    else return 1;
+}
+function str($link='?',$k_page=1,$page=1){ // Вывод номеров страниц (только на первый взгляд кажется сложно ;))
+    echo '<ul class="pagination pagination-sm" style="justify-content: center;">';
+    if ($page < 1) $page=1;
+    if ($page != 1) echo '<li class="page-item"><a class="page-link" href="'.$link.'page=1" title="Первая страница"">&lt;&lt;</a></li>';
+    if ($page != 1) echo '<li class="page-item"><a class="page-link" href="'.$link.'page=1" title="Страница №1">1</a></li>'; else echo '<li class="page-item active"><a class="page-link" href="#">1</a></li>';
+    for ($ot=-3; $ot<=3; $ot++){
+        if ($page + $ot > 1 && $page + $ot < $k_page){
+            if ($ot != 0) echo '<li class="page-item"><a class="page-link" href="'.$link.'page='.($page+$ot).'" title="Страница №'.($page+$ot).'">'.($page+$ot).'</a></li>';else echo '<li class="page-item active"><a class="page-link" href="#">'.($page+$ot).'</a></li>';
+        }
+    }
+    if ($page != $k_page) echo '<li class="page-item"><a class="page-link" href="'.$link.'page=end" title="Страница №'.$k_page.'">'.$k_page.'</a></li>';elseif ($k_page>1)echo '<li class="page-item active"><a class="page-link" href="#">'.$k_page.'</a></li>';
+    if ($page!=$k_page) echo '<li class="page-item"><a class="page-link" href="'.$link.'page=end" title="Последняя страница">&gt;&gt;</a></li>';
+    echo '</ul>';
 }
