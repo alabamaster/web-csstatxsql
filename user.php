@@ -1,13 +1,12 @@
 <?php 
-require_once 'inc/config.php';
 require_once 'inc/func.php';
 require_once 'inc/SteamUserFunctions.php';
 
 $Time = new TimePlayers();
 
-$id = (int)htmlspecialchars($_GET['id']);
+$id = fl($_GET['id']);
 
-if ( $id != true ) {
+if ( !$id ) {
 	$url = $main['url'];
 	header("Location: $url");
 }
@@ -23,8 +22,16 @@ $row = $sql->fetch(PDO::FETCH_ASSOC);
 
 $kdratio = round($row['kills'] / ($row['deaths'] +1), 2);
 
-//$stats_weapons = 1;
-//$stats_maps = 1;
+// geoip
+if ( $main['phpGeoip'] == 1 ) {
+	$country_code = mb_strtolower(geoip_country_code_by_name($row['ip']));
+	$country_name = geoip_country_name_by_name($row['ip']);
+} else {
+	$json = file_get_contents('http://ip-api.com/json/'.$row['ip'].'?lang=us');
+	$array = json_decode($json, true);
+	$country_code = mb_strtolower($array['countryCode']);
+	$country_name = mb_strtolower($array['country']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -34,7 +41,7 @@ $kdratio = round($row['kills'] / ($row['deaths'] +1), 2);
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 		<!-- Font Awesome Icons -->
 		<link rel="stylesheet" href="https://use.fontawesome.com/64ff6e1601.css">
@@ -217,10 +224,10 @@ if ( $steam1 == $steam2 )
 							<div class="input-group mb-3" data-toggle="tooltip" data-placement="left" title="Страна">
 								<div class="input-group-prepend">
 								<span class="input-group-text" id="basic-addon1" style="width: 50px;justify-content: center;">
-									<span class="flag-icon flag-icon-<?=mb_strtolower(geoip_country_code_by_name($row['ip']))?>"></span>
+									<span class="flag-icon flag-icon-<?=$country_code;?>"></span>
 								</span>
 								</div>
-								<input type="text" class="form-control" value="<?=geoip_country_name_by_name($row['ip'])?>" aria-describedby="basic-addon1" disabled>
+								<input type="text" class="form-control" value="<?=$country_name;?>" aria-describedby="basic-addon1" disabled>
 							</div>
 						</div>
 					</div>
@@ -309,8 +316,8 @@ if ( $steam1 == $steam2 )
 		</div>
 		<!-- JavaScript -->
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 		<!-- JS -->
 		<script type="text/javascript">
 			$(function () {
