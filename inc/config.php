@@ -14,7 +14,7 @@ define('DB_HOST', '127.0.0.1');
 define('DB_NAME', 'csbans');
 define('DB_USER', 'username');
 define('DB_PASS', 'password');
-define('DB_CHAR', 'utf8'); // latin1 or utf8
+define('DB_CHAR', 'latin1'); // latin1 or utf8
 
 $stats_weapons = 1; // блок статистики по оружию
 $stats_maps = 1; // блок статистики по картам
