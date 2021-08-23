@@ -11,13 +11,3 @@ Web для статистики CSstatsX SQL(https://dev-cs.ru/threads/573/)
 2. Основные настройки в inc/config.php
 3. Подключение к БД в inc/func.php
 4. Иконки(молнии, печенье и т.д.) настраиваются в config.php и в func.php в функции userIcon
-
-## Демо
-1. Главная https://csonelove.ru/test2/csstats/
-2. Статистика стим игрока https://csonelove.ru/test2/csstats/user.php?id=863
-3. Если игрок забанен https://csonelove.ru/test2/csstats/user.php?id=864
-4. Статистика карт https://csonelove.ru/test2/csstats/maps.php
-
-## Тема в стиле CS
-1. Файлами из папки cs-style заменить стандартные
-2. Демо https://csonelove.ru/test2/csstats-cs/
